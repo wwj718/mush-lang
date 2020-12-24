@@ -1,12 +1,8 @@
+#!/usr/bin/env python
+
 # https://www.daniweb.com/programming/software-development/threads/359370/norvig-an-even-better-lisp-interpreter-in-python
 # 2to3 conversion Tony Veijalainen for Daniweb 2011
 from __future__ import print_function, division
-
-try:
-    input = raw_input
-    range = xrange
-except:
-    pass
 
 ################ Scheme Interpreter in Python
 
@@ -17,6 +13,28 @@ import re
 import sys
 import io
 import collections
+
+
+############### repl toolkit
+from prompt_toolkit import prompt
+from prompt_toolkit import PromptSession
+from prompt_toolkit.lexers import PygmentsLexer
+from pygments.lexers.lisp import RacketLexer
+
+
+############### Adapter Node
+import time
+from codelab_adapter_client import AdapterNode
+
+class MyNode(AdapterNode):
+    NODE_ID = "linda/mush-lang"
+
+    def __init__(self):
+        super().__init__()
+
+node = MyNode()
+node.receive_loop_as_thread()
+time.sleep(0.1)
 
 
 ################ Symbol, Procedure, classes
@@ -170,23 +188,26 @@ def load(filename):
     repl(None, InPort(open(filename)), None)
 
 
-def repl(prompt='lispy> ', inport=InPort(sys.stdin), out=sys.stdout):
+def repl(prompt_='mush-lang >>> ', inport=InPort(sys.stdin), out=sys.stdout):
     "A prompt-read-eval-print loop."
-    sys.stderr.write("Lispy version 2.0\n")
+    session = PromptSession()
     while True:
         try:
-            if prompt:
-                sys.stderr.write(prompt)
-                sys.stderr.flush()
-            x = parse(inport)
-            if x is eof_object:
-                return
-            val = eval(x)
-            if val is not None and out:
-                print(to_string(val), file=out)
-        except Exception as e:
-            print('%s: %s' % (type(e).__name__, e))
-
+            text = session.prompt(prompt_, lexer=PygmentsLexer(RacketLexer))
+        except KeyboardInterrupt:
+            continue
+        except EOFError:
+            break
+        else:
+            try:
+                x = parse(text)
+                if x is eof_object: 
+                    return
+                val = eval(x)
+                if val is not None and out:
+                    print(to_string(val), file=out)
+            except Exception as e:
+                print('%s: %s' % (type(e).__name__, e))
 
 ################ Environment class
 class Env(dict):
@@ -266,7 +287,17 @@ def add_globals(self):
                     lambda x, port=sys.stdout: port.write(to_string(x)),
      'display': lambda x, port=sys.stdout: port.write(x
                                                     if isa(x, str)
-                                                    else to_string(x))})
+                                                    else to_string(x)),
+     # linda
+    'n-tuple?': lambda x: all([type(i) in [str, int, float] for i in x]), # 如何使用n-tuple?构建linda-out
+    "linda-out": lambda x: node.linda_out(x), # tuple to list
+    "linda-in": lambda x: node.linda_in(x), # tuple to list
+    "linda-dump": lambda x: node.linda_dump(x), # tuple to list
+    "linda-rd": lambda x: node.linda_rd(x), # tuple to list
+    # (linda-eval (quote (list 1 1)))
+    "linda-eval": lambda x: node.linda_out(eval(expand(x))), # lis.py不支持eval
+    "view-point": lambda x:x,
+    })
     return self
 
 isa = isinstance
@@ -418,8 +449,28 @@ eval(parse("""(begin
 
 )"""))
 
+'''
 if __name__ == '__main__':
     if len(sys.argv) == 1:
+        repl()
+    else:
+        load(sys.argv[1])
+'''
+
+if __name__ == '__main__':
+    banner = '''
+               |       |                   
+,-.-..   .,---.|---.   |    ,---.,---.,---.
+| | ||   |`---.|   |---|    ,---||   ||   |
+` ' '`---'`---'`   '   `---'`---^`   '`---|
+                                      `---'
+> Think and work in the future, not the present or past. – Alan Kay
+mush-lang 0.0.1
+Type '?' for help.
+Powered by CodeLab\n
+'''
+    if len(sys.argv) == 1:
+        print(banner)
         repl()
     else:
         load(sys.argv[1])
