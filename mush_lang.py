@@ -188,12 +188,17 @@ def load(filename):
     repl(None, InPort(open(filename)), None)
 
 
-def repl(prompt_='mush-lang >>> ', inport=InPort(sys.stdin), out=sys.stdout):
+# def repl(prompt_='mush-lang >>> ', inport=InPort(sys.stdin), out=sys.stdout):
+def repl(prompt_='mush-lang >>> ', inport=None, out=sys.stdout):
+
     "A prompt-read-eval-print loop."
     session = PromptSession()
     while True:
         try:
-            text = session.prompt(prompt_, lexer=PygmentsLexer(RacketLexer))
+            if inport:
+                text = inport # readline
+            else:
+                text = session.prompt(prompt_, lexer=PygmentsLexer(RacketLexer))
         except KeyboardInterrupt:
             continue
         except EOFError:
@@ -382,7 +387,7 @@ def expand(x, toplevel=False):
             if _def is _definemacro:
                 require(x, toplevel, "define-macro only allowed at top level")
                 proc = eval(exp)
-                require(x, isinstance(proc, collections.Callable),
+                require(x, isinstance(proc, collections.abc.Callable),
                                         "macro must be a procedure")
                 macro_table[v] = proc   # (define-macro v proc)
                 return None             # => None; add v:proc to macro_table
@@ -466,9 +471,9 @@ if __name__ == '__main__':
                                       `---'
 > Think and work in the future, not the present or past. – Alan Kay
 mush-lang 0.0.1
-Type '?' for help.
 Powered by CodeLab\n
 '''
+    # print(sys.argv)
     if len(sys.argv) == 1:
         print(banner)
         repl()
