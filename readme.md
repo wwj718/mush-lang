@@ -13,6 +13,8 @@ mush-lang 目前在 Python 中实现。
 # usage
 `pip install mush_lang`
 
+如果要使用 linda 原语，确保已经运行 [CodeLab Adapter](http://adapter.codelab.club/) (Linda服务运行在 CodeLab Adapter)
+
 ## REPL
 ```bash
 # ctrl-D 退出
@@ -38,6 +40,7 @@ python setup.py install
 ### 测试
 ```bash
 python tests/lispytest.py
+python tests/linda_test.py
 ```
 
 # 参考

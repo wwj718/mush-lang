@@ -12,6 +12,8 @@ mush-lang 0.0.1
 Powered by CodeLab\n
 '''
 
+# todo adapter ip
+
 @click.command()
 @click.argument('script', required=False)
 def main(script):  # replace
