@@ -11,7 +11,12 @@ mush-lang
 history = ""
 
 REQUIRES_PYTHON = ">=3.6.0"
-requirements = ['pyzmq', 'msgpack-python', 'loguru', 'uflash', "zeroconf", "click"]
+requirements = [
+    'https://github.com/CodeLabClub/codelab_adapter_client_python/archive/master.zip', 
+    "prompt_toolkit",
+    "pygments",
+    "click",
+]
 
 setup_requirements = [
     'pytest-runner',
