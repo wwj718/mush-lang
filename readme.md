@@ -12,8 +12,14 @@ mush-lang 目前在 Python 中实现。
 
 # usage
 
+## REPL
 ```bash
 python mush_lang.py
+```
+
+## 运行脚本
+```bash
+python mush_lang.py factorial.mu
 ```
 
 ## 开发环境(dev)
@@ -24,6 +30,11 @@ python mush_lang.py
 
 ```bash
 pip install -r requirements.txt
+```
+
+### 测试
+```bash
+python lispytest.py
 ```
 
 # 参考
