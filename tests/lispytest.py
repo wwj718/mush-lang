@@ -1,4 +1,5 @@
 # 2to3 conversion Tony Veijalainen for Daniweb 2011
+
 from __future__ import print_function, division
 
 ################ Tests for lis.py and lispy.py
@@ -116,6 +117,6 @@ def test(tests, name=''):
     print('%s %s: %d out of %d tests fail.' % ('*'*45, name, fails, len(tests)))
 
 if __name__ == '__main__':
-    from mush_lang import *
+    from mush_lang.mush_lang import *
     test(lispy_tests, 'mush_lang.py')
 

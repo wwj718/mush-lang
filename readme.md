@@ -11,15 +11,16 @@ mush-lang 目前在 Python 中实现。
 我们未来也打算基于这个它探索类似 Erlang 的语言（[Linda: 比 Actor 更好的并发模型](http://wwj718.github.io/post/编程/linda-intro/)）
 
 # usage
+`pip install mush_lang`
 
 ## REPL
 ```bash
-python mush_lang.py
+mush-lang
 ```
 
 ## 运行脚本
 ```bash
-python mush_lang.py factorial.mu
+mush-lang examples/factorial.mu
 ```
 
 ## 开发环境(dev)
@@ -30,11 +31,12 @@ python mush_lang.py factorial.mu
 
 ```bash
 pip install -r requirements.txt
+python setup.py install
 ```
 
 ### 测试
 ```bash
-python lispytest.py
+python tests/lispytest.py
 ```
 
 # 参考
