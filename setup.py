@@ -12,7 +12,7 @@ history = ""
 
 REQUIRES_PYTHON = ">=3.6.0"
 requirements = [
-    'https://github.com/CodeLabClub/codelab_adapter_client_python/archive/master.zip', 
+    "codelab_adapter_client", 
     "prompt_toolkit",
     "pygments",
     "click",

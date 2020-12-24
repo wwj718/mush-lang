@@ -2,3 +2,6 @@ https://github.com/CodeLabClub/codelab_adapter_client_python/archive/master.zip
 prompt_toolkit
 pygments
 click
+
+wheel==0.32.1
+twine==1.12.1
