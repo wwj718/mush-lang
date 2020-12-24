@@ -298,7 +298,7 @@ def add_globals(self):
     'n-tuple?': lambda x: all([type(i) in [str, int, float] for i in x]), # 如何使用n-tuple?构建linda-out
     "linda-out": lambda x: node.linda_out(x), # tuple to list
     "linda-in": lambda x: node.linda_in(x), 
-    "linda-dump": lambda x: node.linda_dump(x), 
+    "linda-dump": lambda: node.linda_dump(),  # 不要参数
     "linda-rd": lambda x: node.linda_rd(x), 
     "linda-rdp": lambda x: node.linda_rdp(x), 
     "linda-inp": lambda x: node.linda_inp(x), 
