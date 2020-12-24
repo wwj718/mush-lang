@@ -297,9 +297,11 @@ def add_globals(self):
      # linda
     'n-tuple?': lambda x: all([type(i) in [str, int, float] for i in x]), # 如何使用n-tuple?构建linda-out
     "linda-out": lambda x: node.linda_out(x), # tuple to list
-    "linda-in": lambda x: node.linda_in(x), # tuple to list
-    "linda-dump": lambda x: node.linda_dump(x), # tuple to list
-    "linda-rd": lambda x: node.linda_rd(x), # tuple to list
+    "linda-in": lambda x: node.linda_in(x), 
+    "linda-dump": lambda x: node.linda_dump(x), 
+    "linda-rd": lambda x: node.linda_rd(x), 
+    "linda-rdp": lambda x: node.linda_rdp(x), 
+    "linda-inp": lambda x: node.linda_inp(x), 
     # (linda-eval (quote (list 1 1)))
     "linda-eval": lambda x: node.linda_out(eval(expand(x))), # lis.py不支持eval
     "view-point": lambda x:x,

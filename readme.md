@@ -15,6 +15,7 @@ mush-lang 目前在 Python 中实现。
 
 ## REPL
 ```bash
+# ctrl-D 退出
 mush-lang
 ```
 
