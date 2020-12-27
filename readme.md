@@ -8,7 +8,7 @@ mush-lang 采用 LISP 风格的语法，可以视为 LISP 的一门玩具方言�
 
 mush-lang 目前在 Python 中实现。
 
-我们未来也打算基于这个它探索类似 Erlang 的语言（[Linda: 比 Actor 更好的并发模型](http://wwj718.github.io/post/编程/linda-intro/)）
+我们未来也打算基于它构建类似 Erlang 的语言（[Linda: 比 Actor 更好的并发模型](http://wwj718.github.io/post/编程/linda-intro/)）
 
 # usage
 `pip install mush_lang # 暂未发布到pypi，下周才可用`
@@ -52,3 +52,5 @@ python tests/linda_test.py
 *  [(How to Write a (Lisp) Interpreter (in Python))](http://norvig.com/lispy.html)
 *  [(An ((Even Better) Lisp) Interpreter (in Python))](http://norvig.com/lispy2.html)
 *  [lithp](https://github.com/fogus/lithp): McCarthy Lisp interpreter
+*  [The Erlang Rationale](https://drive.google.com/file/d/1zKsOgwZJ_YZ1bY3b3gNRjAxpn6VneR8b/view)
+*  [A History of Erlang](http://www.cse.chalmers.se/edu/year/2009/course/TDA381_Concurrent_Programming/ARCHIVE/VT2009/general/languages/armstrong-erlang_history.pdf)
