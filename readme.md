@@ -11,7 +11,7 @@ mush-lang 目前在 Python 中实现。
 我们未来也打算基于这个它探索类似 Erlang 的语言（[Linda: 比 Actor 更好的并发模型](http://wwj718.github.io/post/编程/linda-intro/)）
 
 # usage
-`pip install mush_lang`
+`pip install mush_lang # 暂未发布到pypi，下周才可用`
 
 如果要使用 linda 原语，确保已经运行 [CodeLab Adapter](http://adapter.codelab.club/) (Linda服务运行在 CodeLab Adapter)
 
