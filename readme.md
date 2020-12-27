@@ -30,7 +30,7 @@ mush-lang examples/factorial.mu
 
 ### 安装依赖
 
-推荐在 Python 虚拟环境中做实验
+推荐在 Python(`>=3.6`) 虚拟环境中做实验
 
 ```bash
 pip install -r requirements.txt
